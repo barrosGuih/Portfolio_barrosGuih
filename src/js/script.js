@@ -39,6 +39,13 @@ document.addEventListener('touchstart', (e) => {
 
 const cursor = document.querySelector('.custom-cursor');
 
+function toggleCurriculo(event) {
+  if (event) event.preventDefault();
+
+  const section = document.getElementById("curriculo3d");
+  section.classList.toggle("hidden");
+}
+
 if (cursor) {
   document.addEventListener('mousemove', (e) => {
     cursor.style.top = e.clientY + 'px';
