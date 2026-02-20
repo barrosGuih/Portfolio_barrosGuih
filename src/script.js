@@ -23,7 +23,7 @@ function startUnity() {
 
     // Cria o iframe agora e insere no HTML
     const iframe = document.createElement('iframe');
-    iframe.src = "../../unity/portfolio/index.html"; // Caminho do seu jogo
+    iframe.src = "/unity"; // Caminho do seu jogo
     iframe.style.width = "100%";
     iframe.style.height = "100%";
     iframe.style.border = "none";
