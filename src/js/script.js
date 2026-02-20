@@ -1,68 +1,45 @@
-const glow = document.getElementById('glow');
+// 1. Relógio em tempo real
+function updateClock() {
+    const clock = document.getElementById('live-clock');
+    const now = new Date();
+    clock.innerText = now.toLocaleTimeString('pt-BR', { hour12: false });
+}
+setInterval(updateClock, 1000);
 
-// Seguidor de mouse suave para o brilho de fundo
+// 2. Spotlight dinâmico que segue o mouse
 document.addEventListener('mousemove', (e) => {
-  const x = e.clientX;
-  const y = e.clientY;
-
-  // Move o círculo de brilho suavemente
-  document.addEventListener('mousemove', (e) => {
-  glow.style.left = e.clientX + 'px';
-  glow.style.top = e.clientY + 'px';
+    document.documentElement.style.setProperty('--x', e.clientX + 'px');
+    document.documentElement.style.setProperty('--y', e.clientY + 'px');
 });
 
-});
+// 3. LOGICA DO UNITY (CARREGA SÓ NO CLIQUE)
+const modal = document.getElementById('unityModal');
+const container = document.getElementById('unityContainer');
 
-// Revelação suave no scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = "1";
-      entry.target.style.transform = "translateY(0)";
-    }
-  });
-}, { threshold: 0.1 });
+function startUnity() {
+    // Mostra o modal
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Trava o scroll do fundo
 
-document.querySelectorAll('.project-card').forEach(card => {
-  card.style.opacity = "0";
-  card.style.transform = "translateY(30px)";
-  card.style.transition = "all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)";
-  observer.observe(card);
-});
+    // Cria o iframe agora e insere no HTML
+    const iframe = document.createElement('iframe');
+    iframe.src = "../../unity/portfolio/index.html"; // Caminho do seu jogo
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    iframe.style.border = "none";
+    iframe.id = "unityIframe";
 
-// Detecta toque em mobile para o brilho
-document.addEventListener('touchstart', (e) => {
-  const touch = e.touches[0];
-  glow.style.left = touch.clientX + 'px';
-  glow.style.top = touch.clientY + 'px';
-});
-
-const cursor = document.querySelector('.custom-cursor');
-
-function toggleCurriculo(event) {
-  if (event) event.preventDefault();
-
-  const section = document.getElementById("curriculo3d");
-  section.classList.toggle("hidden");
+    container.appendChild(iframe);
 }
 
-if (cursor) {
-  document.addEventListener('mousemove', (e) => {
-    cursor.style.top = e.clientY + 'px';
-    cursor.style.left = e.clientX + 'px';
-  });
+function stopUnity() {
+    // Esconde o modal
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto'; // Libera o scroll
 
-  const hoverElements = document.querySelectorAll(
-    'a, button, .project-card'
-  );
-
-  hoverElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.classList.add('active');
-    });
-
-    el.addEventListener('mouseleave', () => {
-      cursor.classList.remove('active');
-    });
-  });
+    // Remove o iframe (Isso para o jogo e libera memória)
+    const iframe = document.getElementById('unityIframe');
+    if (iframe) {
+        iframe.remove();
+    }
 }

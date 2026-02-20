@@ -1,177 +1,113 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GUIH // DIGITAL ARCHITECT</title>
-  <!-- Fontes modernas e limpas -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&family=Outfit:wght@200;600;900&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guih Barros // Desenvolvedor Full Stack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-
 <body>
+    <!-- Background FX -->
+    <div class="noise"></div>
+    <div class="grid-bg"></div>
+    <div class="spotlight"></div>
 
-  <div class="custom-cursor"></div>
+    <div class="app-wrapper">
+        <!-- SIDEBAR FIXA -->
+        <header class="sidebar">
+            <div class="sidebar-content">
+                <div class="status-badge"><span class="blink"></span> SYSTEM_ONLINE</div>
+                <h1 class="glitch">Guih Barros</h1>
+                <h2 class="role">DESENVOLVEDOR-FULLSTACK</h2>
+                
+                <div class="sidebar-info">
+                    <div class="info-box"><span>LOCATION</span><p>JOÃO PESSOA, PB</p></div>
+                    <div class="info-box"><span>LOCAL_TIME</span><p id="live-clock">00:00:00</p></div>
+                </div>
 
-  <div class="ambient-glow">
-    <div class="glow-circle" id="glow"></div>
-  </div>
+                <nav class="nav">
+                    <a href="#about" class="nav-item"><span>01</span> SOBRE_MIM</a>
+                    <a href="#experience" class="nav-item"><span>02</span> EXPERIÊNCIA</a>
+                    <a href="#projects" class="nav-item"><span>03</span> PROJETOS</a>
+                </nav>
 
-  <nav>
-    <div class="logo">BARROSGUIH</div>
-    <div class="nav-links">
-      <a href="#" onclick="toggleCurriculo(event)">Curriculo3D</a>
-      <a href="#work">Projetos</a>
-      <a href="#about">Experiência</a>
-      <a href="#contact">Contato</a>
+                <div class="sidebar-footer">
+                    <button onclick="startUnity()" class="btn-architect">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                        EXECUTAR_RENDER_3D
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- CONTEÚDO SCROLL -->
+        <main class="main-content">
+            <section id="about" class="section">
+                <p class="console-text">> Iniciando sequência de apresentação...</p>
+                <p>Sou um Engenheiro Full Stack focado em construir pontes entre a lógica pura e a experiência visual imersiva.</p>
+                <p>Especialista em ecossistemas modernos (React, Node, TS) com um pé na engenharia industrial de software.</p>
+            </section>
+
+            <div class="marquee-wrapper">
+                <div class="marquee">
+                    TYPESCRIPT // NEXT.JS // DOCKER // UNITY 3D // POSTGRESQL // JAVA // AWS // SPRING BOOT // REDIS // 
+                </div>
+            </div>
+
+            <section id="experience" class="section">
+                <div class="arch-card">
+                    <div class="card-tag">EXP_24.01</div>
+                    <div class="card-body">
+                        <span>2023_ATUAL</span>
+                        <h3>GRADUAÇÃO ADS // IFPB</h3>
+                        <p>Foco em arquitetura escalável e modelagem de sistemas complexos.</p>
+                    </div>
+                </div>
+
+                <div class="arch-card">
+                    <div class="card-tag">EXP_24.02</div>
+                    <div class="card-body">
+                        <span>2020_2023</span>
+                        <h3>TÉCNICO EM INFORMÁTICA // IFPB</h3>
+                        <p>Base sólida em redes, lógica e hardware de baixo nível.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="section">
+                <div class="project-list">
+                    <a href="#" class="project-item">
+                        <div class="project-img-container">
+                            <div class="img-overlay">ACESSAR_DADOS</div>
+                            <img src="../../assets/projeto1.jpg" alt="">
+                        </div>
+                        <div class="project-details">
+                            <h3>INCLUIR+ WEB</h3>
+                            <p>SISTEMA DE GESTÃO PARA EDUCAÇÃO INCLUSIVA</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <p>COORD_ 7.1153° S, 34.8610° W</p>
+                <p>© 2024 GUIH BARROS // DIGITAL_ARCHITECT</p>
+            </footer>
+        </main>
     </div>
-  </nav>
 
-  <main>
-    <section class="hero">
-      <span class="hero-label">DESENVOLVEDOR FULLSTACK</span>
-      <div class="hero-title">
-        <div class="hero-text">
-          <h1>GUI<span>H B</span>ARROS</h1>
-          <p>
-            Técnico em Informática pelo IFPB e graduando em ADS. <br />Desenvolvedor full stack.
-            Explore meu mundo e descubra meus projetos.
-          </p>
+    <!-- Modal Unity (Vazio por padrão) -->
+    <div id="unityModal" class="modal-3d hidden">
+        <div class="modal-header">
+            <span class="modal-title">RENDERIZAÇÃO_EM_CURSO...</span>
+            <button onclick="stopUnity()" class="modal-close">ENCERRAR_PROCESSO [X]</button>
         </div>
-
-        <img src="../../assets/image.jpg" alt="Foto de Guilherme Barros">
-      </div>
-    </section>
-
-    <section class="unity-section hidden" id="curriculo3d">
-      <div class="unity-header">
-        <h2>Currículo Interativo 3D</h2>
-        <button onclick="toggleCurriculo()">✕ Fechar</button>
-      </div>
-
-      <div class="unity-container">
-        <iframe src="../../unity/portfolio/index.html" loading="lazy" allowfullscreen>
-        </iframe>
-      </div>
-    </section>
-
-    <section class="work" id="work">
-      <h2 class="section-title">PROJETOS</h2>
-
-      <div class="project-grid">
-        <!-- Projeto 1 -->
-        <div class="project-card">
-          <div>
-            <div class="tag">JAVA</div>
-            <h3>Mechanic-stock-java</h3>
-            <p>sistema de controle de estoque de peças e lubrificantes automotivos desenvolvido em Java. Permite
-              gerenciar entradas e saídas de produtos, controlar quantidades em estoque e registrar o histórico de
-              movimentações.</p>
-          </div>
-          <a href="https://github.com/barrosGuih/Mechanic-stock-java" class="view-btn">VER PROJETO</a>
+        <div id="unityContainer" class="unity-viewport">
+            <!-- O Iframe será injetado aqui pelo JS -->
         </div>
-
-        <!-- Projeto 2 -->
-        <div class="project-card">
-          <div>
-            <div class="tag">NODE.JS / REACT / POSTGRESS</div>
-            <h3>Web-Incluirmais</h3>
-            <p>Incluir+ (Web) é um sistema web desenvolvido para psicopedagogos e educadores, voltado à gestão de
-              programas de educação inclusiva. Ele aprimora a comunicação, o acompanhamento dos alunos e o suporte à
-              aprendizagem
-              de estudantes com deficiência ou dificuldades de aprendizagem.</p>
-          </div>
-          <a href="https://github.com/barrosGuih/Web-Incluirmais" class="view-btn">VER PROJETO</a>
-        </div>
-
-        <!-- Projeto 3 -->
-        <div class="project-card">
-          <div>
-            <div class="tag">C# / UNITY </div>
-            <h3>HopeCity</h3>
-            <p>Projeto em desenvolvimento </p>
-          </div>
-          <a href="#" class="view-btn">VER PROJETO</a>
-        </div>
-
-        <!-- Projeto 4 -->
-        <div class="project-card">
-          <div>
-            <div class="tag">JAVA</div>
-            <h3>Mechanic-stock-java</h3>
-            <p>sistema de controle de estoque de peças e lubrificantes automotivos desenvolvido em Java. Permite
-              gerenciar entradas e saídas de produtos, controlar quantidades em estoque e registrar o histórico de
-              movimentações.</p>
-          </div>
-          <a href="https://github.com/barrosGuih/Mechanic-stock-java" class="view-btn">VER PROJETO</a>
-        </div>
-
-        <!-- Projeto 5 -->
-        <div class="project-card">
-          <div>
-            <div class="tag">JAVA</div>
-            <h3>Mechanic-stock-java</h3>
-            <p>sistema de controle de estoque de peças e lubrificantes automotivos desenvolvido em Java. Permite
-              gerenciar entradas e saídas de produtos, controlar quantidades em estoque e registrar o histórico de
-              movimentações.</p>
-          </div>
-          <a href="https://github.com/barrosGuih/Mechanic-stock-java" class="view-btn">VER PROJETO</a>
-        </div>
-
-        <!-- Projeto 6 -->
-        <div class="project-card">
-          <div>
-            <div class="tag">JAVA</div>
-            <h3>Mechanic-stock-java</h3>
-            <p>sistema de controle de estoque de peças e lubrificantes automotivos desenvolvido em Java. Permite
-              gerenciar entradas e saídas de produtos, controlar quantidades em estoque e registrar o histórico de
-              movimentações.</p>
-          </div>
-          <a href="https://github.com/barrosGuih/Mechanic-stock-java" class="view-btn">VER PROJETO</a>
-        </div>
-
-        <!-- Projeto 7 -->
-        <div class="project-card">
-          <div>
-            <div class="tag">JAVA</div>
-            <h3>Mechanic-stock-java</h3>
-            <p>sistema de controle de estoque de peças e lubrificantes automotivos desenvolvido em Java. Permite
-              gerenciar entradas e saídas de produtos, controlar quantidades em estoque e registrar o histórico de
-              movimentações.</p>
-          </div>
-          <a href="https://github.com/barrosGuih/Mechanic-stock-java" class="view-btn">VER PROJETO</a>
-        </div>
-
-        <!-- Projeto 8 -->
-        <div class="project-card">
-          <div>
-            <div class="tag">JAVA</div>
-            <h3>Mechanic-stock-java</h3>
-            <p>sistema de controle de estoque de peças e lubrificantes automotivos desenvolvido em Java. Permite
-              gerenciar entradas e saídas de produtos, controlar quantidades em estoque e registrar o histórico de
-              movimentações.</p>
-          </div>
-          <a href="https://github.com/barrosGuih/Mechanic-stock-java" class="view-btn">VER PROJETO</a>
-        </div>
-      </div>
-
-
-    </section>
-  </main>
-
-  <footer>
-    <div class="cta-box">
-      <h2></h2>
-      <a href="mailto:contato@exemplo.com" class="email-btn"></a>
     </div>
-    <p style="color: var(--text-dim); font-size: 0.8rem; letter-spacing: 2px;">
-      © 2024 GUIHERME BARROS // DISPONÍVEL PARA NOVOS DESAFIOS
-    </p>
-  </footer>
-  <script src="../js/script.js"></script>
+
+    <script src="../js/script.js"></script>
 </body>
-
 </html>
